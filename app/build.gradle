@@ -25,6 +25,7 @@ android {
 
 def lifeCycleExtensionVersion = '1.1.1'
 def supportVersion = '29.0.0'
+def roomVersion = '2.1.0-rc01'
 
 
 dependencies {
@@ -35,6 +36,11 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
 
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
+
+    //room database persistence
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
 
     testImplementation 'junit:junit:4.12'

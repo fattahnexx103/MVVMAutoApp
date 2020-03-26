@@ -60,13 +60,18 @@ public class MainActivity extends AppCompatActivity {
     //this method observes the viewmodel
     private void observeViewModel(){
 
-        viewModel.item.observe(this, itemModels -> {
+        //observe the model if any item model gets added
+        viewModel.itemLiveData.observe(this, itemModels -> {
             if(itemModels != null) {
                 recyclerView.setVisibility(View.VISIBLE);
                 listItemAdapter.updateList(itemModels); //update the list
-                if(itemModels.getId() > 10){ //after 10 entries
-                    listItemAdapter.removeTopItem(); // call the removeItem method to
-                }
+            }
+        });
+
+        //observe the deletedpoisition to see if we need to remove the row from view
+        viewModel.deletedPositionLiveData.observe(this, deletedPosition -> {
+            if(deletedPosition != 0) {
+                listItemAdapter.removeTopItem(); // removes the top most row from the list UI.
             }
         });
 
